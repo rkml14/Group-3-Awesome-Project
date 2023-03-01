@@ -9,27 +9,15 @@
 </head>
 
 <body>
-  <header class="display-flex justify-space-between align-left">
-    <nav>
-     <a href="/">Home</a>
-    
-    <a href="/myprofile">My Profile</a>
-
-    <a id="logout" class="btn-no-style">Logout</button>
-
-    <a href="/login">Login</a>
-
-  </nav>
-    <h1 id="main-header">
-        Friendly Fire
-    </h1>
-  </header>
+  {{> header}}
+  
   <main class="container container-fluid mt-5">
     {{{ body }}}
+
+    <!-- Add About Us Button that redicts to /aboutus -->
   </main>
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>
-
 </html>
