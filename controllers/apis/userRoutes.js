@@ -4,6 +4,7 @@ const { User } = require('../../models');
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
+    console.log(req.body);
 //save method allows us to add or update properties on the session object
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -12,6 +13,7 @@ router.post('/', async (req, res) => {
       res.status(200).json(userData);
     });
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
