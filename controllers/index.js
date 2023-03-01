@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // Require all controllers
-const apiRoutes = require('./api');
+const apiRoutes = require('./apis');
 const homeRoutes = require('./homeRoutes');
 
 // Use all controllers
