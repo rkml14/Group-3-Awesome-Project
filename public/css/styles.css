@@ -1,0 +1,123 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul li a img {
+    width: 50px;
+    height: 50px;
+    padding-right: 2px;
+  }
+  
+  /********* HEADER STUFF *********/
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  header nav {
+    display: flex;
+  }
+  
+  header nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  header nav a:hover {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  /********* END OF HEADER STUFF *********/
+  /********* FOOTER STUFF *********/
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer-menu li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .footer-menu li:last-child {
+    margin-right: 0;
+  }
+  
+  .footer-menu a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-social h3 {
+    margin-top: 0;
+  }
+  
+  .footer-social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-social li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .footer-social li:last-child {
+    margin-right: 0;
+  }
+  
+  .footer-social a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-social img {
+    margin-right: 5px;
+  }
+  
+  /***** END OF FOOTER STUFF *****/
