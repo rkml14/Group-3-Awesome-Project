@@ -24,24 +24,24 @@ res.render('homepage', {
   }
 });  
 
-router.get('/profiles/:id', withAuth, async (req, res) => {
+router.get('/myprofile', withAuth, async (req, res) => {
   try {
-    const profileData = await Profile.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: {include:['username']},
-        },
-      ],
+    // Find the logged in user based on the session ID
+    const userData = await User.findOne( {
+      where: {
+        id: req.session.user_id,
+      },
+      attributes: {exclude:['password']},
+      include: { model: Profile },
     });
-
-    const profile = profileData.get({ plain: true });
-
-    res.render('blogpost', {
-      ...profile,
-      logged_in: req.session.logged_in
+    console.log(userData);
+    const users = userData.get({ plain: true });
+    res.render('myprofile', {
+      users,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
