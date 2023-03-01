@@ -6,6 +6,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers.js');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { getAgents } = require('./utils/valorantHelpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -26,6 +27,17 @@ const sess = {
 };
 
 app.use(session(sess));
+// middleware for valorant agents on all templates
+app.use(async (req, res, next) => {
+  try {
+    const agentMap = await getAgents();
+    res.locals.agentMap = agentMap;
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 
 const hbs = exphbs.create({});
