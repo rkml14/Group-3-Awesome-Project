@@ -34,6 +34,7 @@ router.get('/myprofile', withAuth, async (req, res) => {
       attributes: {exclude:['password']},
       include: { model: Profile },
     });
+    console.log(userData);
     const users = userData.get({ plain: true });
     res.render('myprofile', {
       users,
@@ -55,7 +56,7 @@ router.get('/leaderboard', withAuth, async (req, res) => {
       include: { model: Profile },
     });
     const users = userData.get({ plain: true });
-    res.render('leaderboard', {
+    res.render('board', {
       users,
       logged_in: req.session.logged_in,
     });
