@@ -45,6 +45,10 @@ html {
     background-color: #fff;
     color: #333;
   }
+
+  header #logout{
+    cursor: pointer;
+  }
   
   header h1 {
     margin: 0;
