@@ -60,4 +60,20 @@ router.post('/logout', (req, res) => {
   }
 });
 
+// DELETE a user
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Delete the user with the given ID
+    await User.destroy({ where: { id: id } });
+
+    res.status(204).end(); // send a "No Content" response
+  } catch (error) {
+    console.error(error);
+    res.status(404).json({ error: "No user with provided id."})
+    res.status(500).json({ error: "Failed to delete user account." });
+  } // catch
+}); // DELETE user 
+
 module.exports = router;

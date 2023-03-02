@@ -74,20 +74,17 @@ router.put('/:id', withAuth, async (req, res) => {
 }); // PUT profile
 
 // DELETE a profile
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    const profileData = await Profile.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!profileData) {
-      res.status(404).json({ message: 'No profile found with this id!' });
-      return;
-    } // if
-    res.status(200).json(profileData);
-  } catch (err) {
-    res.status(500).json(err);
+    const profileId = req.params.id;
+
+    // Delete the profile with the given ID
+    await Profile.destroy({ where: { id: profileId } });
+
+    res.status(204).end(); // send a "No Content" response
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete profile." });
   } // catch
 }); // DELETE profile
 

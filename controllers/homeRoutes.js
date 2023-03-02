@@ -13,11 +13,13 @@ router.get('/', async (req, res) => {
       ],
     });
 
-const profiles = profileData.map((profile) => profile.get({ plain: true }));
-
+const profile = profileData.map((profile) => profile.get({ plain: true }));
+console.log(profile);
 res.render('homepage', {
-  profiles,
-  logged_in: req.session.logged_in
+  profile,
+  logged_in: req.session.logged_in,
+  user_id: req.session.user_id
+  
 });
   } catch(err) {
     res.status(500).json(err);
