@@ -36,5 +36,22 @@ async function getAgents() {
     });
     return sprayMap;
   }
+
+  async function getMaps() {
+    const fetch = await import('node-fetch');
+    const response = await fetch.default('https://valorant-api.com/v1/maps');
+    const data = await response.json();
+    const maps = [];
+    data.data.forEach((mapData) => {
+      maps.push({
+        uuid: mapData.uuid,
+        displayName: mapData.displayName,
+        coordinates: mapData.coordinates,
+        displayIcon: mapData.displayIcon,
+        splash: mapData.splash,
+      });
+    });
+    return maps;
+  }
   
-  module.exports = { getAgents, getSprays };
+  module.exports = { getAgents, getSprays, getMaps };
