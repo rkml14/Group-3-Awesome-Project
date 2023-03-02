@@ -13,5 +13,28 @@ async function getAgents() {
     });
     return agentMap;
   }
+
+  async function getSprays() {
+    const fetch = await import('node-fetch');
+    const response = await fetch.default('https://valorant-api.com/v1/sprays');
+    const data = await response.json();
+    const sprayMap = {};
+    data.data.forEach(sprayData => {
+      sprayMap[sprayData.uuid] = {
+        uuid: sprayData.uuid,
+        displayName: sprayData.displayName,
+        category: sprayData.category,
+        themeUuid: sprayData.themeUuid,
+        displayIcon: sprayData.displayIcon,
+        fullIcon: sprayData.fullIcon,
+        fullTransparentIcon: sprayData.fullTransparentIcon,
+        animationPng: sprayData.animationPng,
+        animationGif: sprayData.animationGif,
+        assetPath: sprayData.assetPath,
+        levels: sprayData.levels
+      };
+    });
+    return sprayMap;
+  }
   
-  module.exports = { getAgents };
+  module.exports = { getAgents, getSprays };
