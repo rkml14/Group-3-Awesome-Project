@@ -5,6 +5,7 @@ html {
 
 body {
   overflow-x: hidden;
+  font-family: 'VALORANT', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .background {
@@ -33,6 +34,8 @@ ul li a img {
   height: 50px;
   padding-right: 2px;
 }
+
+
 
 /********* HEADER STUFF *********/
 header {
@@ -187,6 +190,25 @@ footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
+ aboutus2
+.footer-copyright {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    }
+
+/***** END OF FOOTER STUFF *****/
+
+/***** BIO STUFF *****/
+.bios {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  /* flex-direction: column; */
+}
+
+=======
 .contact-social img {
   margin-right: 5px;
 }
+
