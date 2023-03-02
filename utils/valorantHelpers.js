@@ -44,10 +44,7 @@ async function getAgents() {
     const maps = [];
     data.data.forEach((mapData) => {
       maps.push({
-        uuid: mapData.uuid,
         displayName: mapData.displayName,
-        coordinates: mapData.coordinates,
-        displayIcon: mapData.displayIcon,
         splash: mapData.splash,
       });
     });
