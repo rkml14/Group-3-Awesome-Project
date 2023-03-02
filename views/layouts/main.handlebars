@@ -16,10 +16,12 @@
 
     <!-- Add About Us Button that redicts to /aboutus -->
   </main>
+  
+  {{> footer}}
+
+   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
-
-  {{> footer}}
 </body>
 </html>

@@ -1,16 +1,29 @@
-<header class="display-flex justify-space-between align-left">
-    <nav>
-     <a href="/">Home</a>
+<header class='display-flex justify-space-between align-left'>
 
-    <a href="/leaderboard">Leaderboard </a>
+    <div class='header-logo'>
+      <a href="/">
+      <img
+        src='{{sprayMap.cbcd99a5-49db-d39f-a060-67a781d1605a.displayIcon}}'
+        alt='{{sprayMap.cbcd99a5-49db-d39f-a060-67a781d1605a.displayName}}'
+      />
+      </a>
+    </div>
+    <nav>
+    <a href='/'>Home</a>
+
+    <a href='/leaderboard'>Leaderboard </a>
     <!-- add search profile function later -->
 
-    <a href="/myprofile">My Profile</a>
+    {{#if logged_in}}
+      <a href='/myprofile'>My Profile</a>
 
-    <a id="logout" class="btn-no-style">Logout</button>
+      <a href='' id='logout'>Logout</a>
+    {{else}}
+      <a href='/login'>Login</a>
+    {{/if}}
 
-    <a href="/login">Login</a>
-
+  <h1 id='main-header' style="margin-left: auto;">
+    Friendly Fire
+  </h1>
   </nav>
-    <h1 id="main-header">Friendly Fire</h1>
   </header>
