@@ -24,6 +24,7 @@ res.render('homepage', {
   }
 });  
 
+
 router.get('/myprofile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -34,6 +35,7 @@ router.get('/myprofile', withAuth, async (req, res) => {
       attributes: {exclude:['password']},
       include: { model: Profile },
     });
+    console.log(userData);
     const users = userData.get({ plain: true });
     res.render('myprofile', {
       users,
@@ -43,6 +45,7 @@ router.get('/myprofile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 router.get('/leaderboard', withAuth, async (req, res) => {
   try {
@@ -74,6 +77,12 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/aboutus', (req, res) => {
+return res.render('aboutus', {});
+});  
 
-
+router.get('/contact', (req, res) => {
+  return res.render('contact', {});
+  });  
+  
 module.exports = router;
