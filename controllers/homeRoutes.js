@@ -56,7 +56,7 @@ router.get('/leaderboard', withAuth, async (req, res) => {
       include: { model: Profile },
     });
     const users = userData.get({ plain: true });
-    res.render('board', {
+    res.render('leaderboard', {
       users,
       logged_in: req.session.logged_in,
     });
@@ -75,6 +75,10 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/contact', (req, res) => {
+  
+res.render('contact')
+});
 
 
 module.exports = router;
