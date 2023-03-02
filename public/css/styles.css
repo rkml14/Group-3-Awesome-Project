@@ -5,6 +5,7 @@ html {
 
 body {
   overflow-x: hidden;
+  font-family: 'VALORANT', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 ul {
@@ -18,6 +19,8 @@ ul li a img {
   height: 50px;
   padding-right: 2px;
 }
+
+
 
 /********* HEADER STUFF *********/
 header {
@@ -152,3 +155,12 @@ footer {
     }
 
 /***** END OF FOOTER STUFF *****/
+
+/***** BIO STUFF *****/
+.bios {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  /* flex-direction: column; */
+}
+
