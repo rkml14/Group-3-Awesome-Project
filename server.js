@@ -6,7 +6,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers.js');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { getAgents, getSprays } = require('./utils/valorantHelpers');
+const { getAgents, getSprays, getMaps } = require('./utils/valorantHelpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -47,6 +47,23 @@ app.use(async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// Middleware for Valorant maps on all templates, generates a random map and their splashart
+app.use(async (req, res, next) => {
+  try {
+    const maps = await getMaps();
+    if (maps.length === 0) {
+      throw new Error('No maps found');
+    }
+    const randomMapIndex = Math.floor(Math.random() * maps.length);
+    const randomMap = maps[randomMapIndex];
+    res.locals.randomSplash = randomMap.splash;
+    next();
+  } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
