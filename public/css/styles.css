@@ -87,7 +87,7 @@ fieldset {
 #search {
   font-size: 16px;
   padding: 10px 50px 10px 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 1px solid #ccc;
   width: 300px;
 }
@@ -107,7 +107,7 @@ svg {
   cursor: pointer;
   position: absolute;
   top: 50%; /* center the button vertically */
-  right: 10px; /* position the button to the right */
+  right: 1px; /* position the button to the right */
   transform: translateY(-50%); /* adjust position to center vertically */
 }
 
