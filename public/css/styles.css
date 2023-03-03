@@ -190,8 +190,7 @@ footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
- aboutus2
-.footer-copyright {
+ .footer-copyright {
     text-align: center;
     font-size: 14px;
     margin-top: 20px;
@@ -207,8 +206,16 @@ footer {
   /* flex-direction: column; */
 }
 
-=======
 .contact-social img {
   margin-right: 5px;
+}
+
+/***** END OF BIO STUFF *****/
+
+/***** MY PROFILE STUFF *****/
+
+#update-profile{
+  float: right;
+  
 }
 
