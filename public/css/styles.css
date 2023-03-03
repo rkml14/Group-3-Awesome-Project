@@ -21,6 +21,8 @@ body {
   width: 100%;
   height: 100%;
   opacity: 0.7;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 ul {
@@ -35,8 +37,94 @@ ul li a img {
   padding-right: 2px;
 }
 
+/********* SEARCH-CARD STUFF *********/
+.search-card {
+  border: 2px solid lightslategray;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  overflow: hidden;
+}
+
+.search-card-body {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.search-card .search-div {
+  margin: 0;
+}
+
+.search-card .input-field {
+  margin: 0;
+}
+
+/********* END OF SEARCH-CARD STUFF *********/
+/********* SEARCH BAR STUFF *********/
+fieldset {
+  border: none;
+}
+
+.search-div {
+  position: relative;
+}
+
+.inner-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.input-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#search {
+  font-size: 16px;
+  padding: 10px 50px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+
+svg {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-search {
+  background-color: #fff;
+  color: #fff;
+  width: 40px;
+  border: none;
+  padding: 4px; /* increase padding for bigger button */
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%; /* center the button vertically */
+  right: 1px; /* position the button to the right */
+  transform: translateY(-50%); /* adjust position to center vertically */
+}
+
+.btn-search:hover {
+background-color: #2F80ED;
+color: #fff;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+transition: all 0.3s ease;
+}
+
+#search:focus {
+outline: none;
+box-shadow: 0 0 5px #2F80ED;
+}
 
 
+/********* END OF SEARCH BAR STUFF *********/
 /********* HEADER STUFF *********/
 header {
   display: flex;
@@ -81,8 +169,6 @@ header h1 {
   margin: 0;
   font-size: 2rem;
 }
-
-
 
 /********* END OF HEADER STUFF *********/
 /********* FOOTER STUFF *********/
@@ -137,19 +223,18 @@ footer {
   float: right;
   width: 20%;
   height: 130%;
-  margin-left: 30px; 
+  margin-left: 30px;
 }
-.contact-links{
+.contact-links {
   margin-top: 30px;
 }
 
-#email-link{
+#email-link {
   text-decoration: none;
   color: black;
-  
 }
 
-#email-link:hover{
+#email-link:hover {
   text-decoration: underline;
   color: red;
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
@@ -190,11 +275,11 @@ footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
- .footer-copyright {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 20px;
-    }
+.footer-copyright {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
 
 /***** END OF FOOTER STUFF *****/
 
