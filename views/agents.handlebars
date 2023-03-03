@@ -1,0 +1,33 @@
+ <h1>Valorant Agents</h1>
+<div class="agent-wrapper">
+  <div class="agent-cards-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); grid-gap: 1em;">
+    {{#each agents}}
+      <div class="agent-card">
+        <h2 class="agent-card-header">{{this.displayName}}</h2>
+        <img class="agent-card-image" src="{{this.fullPortrait}}" alt="{{this.displayName}} Portrait" style="max-width: 100%; height: auto;">
+        <div class="agent-card-body">
+          <h3>Abilities:</h3>
+          <ul class="agent-abilities-list">
+            {{#each this.abilities}}
+              <li class="agent-ability-item">{{this.displayName}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  {{#if paginationInfo.totalPages}}
+    <div class="agent-pagination">
+      {{#if paginationInfo.hasPreviousPage}}
+        <a href="/agents?page={{paginationInfo.previousPage}}">&laquo; Previous</a>
+      {{/if}}
+      {{#if paginationInfo.hasNextPage}}
+        <a href="/agents?page={{paginationInfo.nextPage}}">Next &raquo;</a>
+      {{/if}}
+    </div>
+  {{/if}}
+</div>
+
+
+

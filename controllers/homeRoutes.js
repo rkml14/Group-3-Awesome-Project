@@ -1,40 +1,41 @@
 const router = require('express').Router();
-const { Profile, User } = require('../models') 
-const withAuth = require('../utils/auth')
+const { Profile, User } = require('../models');
+const withAuth = require('../utils/auth');
+const { getAgents, getAgentsFiltered } = require('../utils/valorantHelpers');
+const paginate = require('paginate-info');
+const paginateArray = require('paginate-array');
 
 router.get('/', async (req, res) => {
-  try{
+  try {
     const profileData = await Profile.findAll({
       include: [
         {
           model: User,
-          attributes: {exclude:['password']},
+          attributes: { exclude: ['password'] },
         },
       ],
     });
 
-const profile = profileData.map((profile) => profile.get({ plain: true }));
-console.log(profile);
-res.render('homepage', {
-  profile,
-  logged_in: req.session.logged_in,
-  user_id: req.session.user_id
-  
-});
-  } catch(err) {
+    const profile = profileData.map((profile) => profile.get({ plain: true }));
+    console.log(profile);
+    res.render('homepage', {
+      profile,
+      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
+    });
+  } catch (err) {
     res.status(500).json(err);
   }
-});  
-
+});
 
 router.get('/myprofile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findOne( {
+    const userData = await User.findOne({
       where: {
         id: req.session.user_id,
       },
-      attributes: {exclude:['password']},
+      attributes: { exclude: ['password'] },
       include: { model: Profile },
     });
     console.log(userData);
@@ -51,11 +52,11 @@ router.get('/myprofile', withAuth, async (req, res) => {
 router.get('/leaderboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findOne( {
+    const userData = await User.findOne({
       where: {
         id: req.session.user_id,
       },
-      attributes: {exclude:['password']},
+      attributes: { exclude: ['password'] },
       include: { model: Profile },
     });
     const users = userData.get({ plain: true });
@@ -79,8 +80,8 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/aboutus', (req, res) => {
-return res.render('aboutus', {});
-});  
+  return res.render('aboutus', {});
+});
 
 router.get('/contact', (req, res) => {
   return res.render('contact', {});
@@ -89,6 +90,32 @@ router.get('/contact', (req, res) => {
 router.get('/createprofile', (req, res) => {
     return res.render('createprofile', {});
     });   
-  
-  
+
+router.get('/agents', async (req, res) => {
+  try {
+    const agentMap = await getAgentsFiltered();
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = 8; // number of agents per page
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedAgents = agentMap.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(agentMap.length / pageSize);
+    const paginationInfo = {
+      currentPage: page,
+      totalPages: totalPages,
+      hasPreviousPage: page > 1,
+      previousPage: page > 1 ? page - 1 : null,
+      hasNextPage: page < totalPages,
+      nextPage: page < totalPages ? page + 1 : null,
+    };
+    res.render('agents', {
+      agents: paginatedAgents,
+      paginationInfo: paginationInfo,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
