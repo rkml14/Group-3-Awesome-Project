@@ -6,7 +6,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers.js');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { getAgents, getSprays, getMaps } = require('./utils/valorantHelpers');
+const { getAgents, getSprays, getMaps, getMatchData } = require('./utils/valorantHelpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -67,6 +67,7 @@ app.use(async (req, res, next) => {
     res.status(500).json(err);
   }
 });
+
 
 const hbs = exphbs.create({});
 

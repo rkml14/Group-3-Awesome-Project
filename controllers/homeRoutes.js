@@ -48,7 +48,6 @@ router.get('/myprofile', withAuth, async (req, res) => {
   }
 });
 
-
 router.get('/leaderboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
