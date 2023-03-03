@@ -85,7 +85,11 @@ router.get('/aboutus', (req, res) => {
 
 router.get('/contact', (req, res) => {
   return res.render('contact', {});
-});
+  }); 
+
+router.get('/createprofile', (req, res) => {
+    return res.render('createprofile', {});
+    });   
 
 router.get('/agents', async (req, res) => {
   try {

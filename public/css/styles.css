@@ -217,8 +217,15 @@ footer {
   margin-top: 20px;
 }
 
+.footer-copyright {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
 /***** END OF FOOTER STUFF *****/
-/* Contact Section */
+/* CONTACT STUFF */
+
 .contact-social {
   margin-right: 20px;
   padding: 20px;
@@ -278,13 +285,8 @@ footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
-.footer-copyright {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 20px;
-}
 
-/***** END OF FOOTER STUFF *****/
+/***** END OF CONTACT STUFF *****/
 
 /***** BIO STUFF *****/
 .bios {
@@ -311,7 +313,16 @@ footer {
 
 #update-profile{
   float: right;
-  
+}
+
+/***** END OF PROFILE STUFF *****/
+
+#select-icon-btn{
+  margin: 10px;
+}
+
+#submit-update-btn{
+  margin: 10px;
 }
 
 /***** AGENTS PAGE *****/
