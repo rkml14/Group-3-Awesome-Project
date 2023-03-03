@@ -290,7 +290,24 @@ footer {
   border: none;
   /* flex-direction: column; */
 }
+.card {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  background-color: #fff;
+  margin-right: 15px;
+  /* margin-left: 08px; */
+}
 
 .contact-social img {
   margin-right: 5px;
 }
+
+/***** END OF BIO STUFF *****/
+
+/***** MY PROFILE STUFF *****/
+
+#update-profile{
+  float: right;
+  
+}
+
