@@ -190,8 +190,7 @@ footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
- aboutus2
-.footer-copyright {
+ .footer-copyright {
     text-align: center;
     font-size: 14px;
     margin-top: 20px;
@@ -214,21 +213,16 @@ footer {
   /* margin-left: 08px; */
 }
 
-.card:hover {
-  box-shadow: 0 16px 32px 0 rgba(0,0,0,0.5);
-}
-
-.bio-title {
-  text-align: center;
-}
-#criteria {
-  display: list-item;
-  list-style-position: inside;
-  list-style: square;
-}
-
-/***** CONTACT STUFF *****/
 .contact-social img {
   margin-right: 5px;
+}
+
+/***** END OF BIO STUFF *****/
+
+/***** MY PROFILE STUFF *****/
+
+#update-profile{
+  float: right;
+  
 }
 
