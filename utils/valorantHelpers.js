@@ -6,13 +6,22 @@ async function getAgents() {
     data.data.forEach(agentData => {
       agentMap[agentData.displayName] = {
         uuid: agentData.uuid,
-        // displayIcon: agentData.displayIcon,
+        displayIcon: agentData.displayIcon,
         displayIconSmall: agentData.displayIconSmall,
-        // fullPortrait: agentData.fullPortrait
+        fullPortrait: agentData.fullPortrait
       }; 
     });
     return agentMap;
   }
+
+const getAgentsFiltered = async () => {
+  const fetch = await import('node-fetch');
+  const response = await fetch.default('https://valorant-api.com/v1/agents');
+  const data = await response.json();
+  const agentArray = Object.values(data.data); // convert object values to array
+  const filteredAgents = agentArray.filter(agent => agent.isPlayableCharacter); // filter out non-playable characters
+  return filteredAgents;
+};
 
   async function getSprays() {
     const fetch = await import('node-fetch');
@@ -51,4 +60,4 @@ async function getAgents() {
     return maps;
   }
   
-  module.exports = { getAgents, getSprays, getMaps };
+  module.exports = { getAgents, getSprays, getMaps, getAgentsFiltered };
