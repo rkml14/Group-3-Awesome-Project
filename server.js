@@ -6,7 +6,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers.js');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { getAgents, getSprays, getMaps, getMatchData } = require('./utils/valorantHelpers');
+const { getAgents, getSprays, getMaps, getWeapons } = require('./utils/valorantHelpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,6 +27,19 @@ const sess = {
 };
 
 app.use(session(sess));
+
+// middleware for valorant weapons on all templates
+app.use(async (req, res, next) => {
+  try {
+    const weaponMap = await getWeapons();
+    res.locals.weaponMap = weaponMap;
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // middleware for valorant agents on all templates
 app.use(async (req, res, next) => {
   try {

@@ -1,0 +1,15 @@
+<!-- weapons.handlebars -->
+{{#each weapons}}
+  <h2>{{@key}}</h2>
+  <ul>
+    {{#each this}}
+      <li>
+        <img src="{{image}}" alt="{{displayName}} icon">
+        {{displayName}}
+        {{#if cost}}
+          <span>Cost: {{cost}}</span>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+{{/each}}

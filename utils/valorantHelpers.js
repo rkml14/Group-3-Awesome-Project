@@ -1,63 +1,107 @@
 async function getAgents() {
-    const fetch = await import('node-fetch');
-    const response = await fetch.default('https://valorant-api.com/v1/agents');
-    const data = await response.json();
-    const agentMap = {};
-    data.data.forEach(agentData => {
-      agentMap[agentData.displayName] = {
-        uuid: agentData.uuid,
-        displayIcon: agentData.displayIcon,
-        displayIconSmall: agentData.displayIconSmall,
-        fullPortrait: agentData.fullPortrait
-      }; 
-    });
-    return agentMap;
-  }
+  const fetch = await import('node-fetch');
+  const response = await fetch.default('https://valorant-api.com/v1/agents');
+  const data = await response.json();
+  const agentMap = {};
+  data.data.forEach((agentData) => {
+    agentMap[agentData.displayName] = {
+      uuid: agentData.uuid,
+      displayIcon: agentData.displayIcon,
+      displayIconSmall: agentData.displayIconSmall,
+      fullPortrait: agentData.fullPortrait,
+    };
+  });
+  return agentMap;
+}
 
 const getAgentsFiltered = async () => {
   const fetch = await import('node-fetch');
   const response = await fetch.default('https://valorant-api.com/v1/agents');
   const data = await response.json();
   const agentArray = Object.values(data.data); // convert object values to array
-  const filteredAgents = agentArray.filter(agent => agent.isPlayableCharacter); // filter out non-playable characters
+  const filteredAgents = agentArray.filter(
+    (agent) => agent.isPlayableCharacter
+  ); // filter out non-playable characters
   return filteredAgents;
 };
 
-  async function getSprays() {
-    const fetch = await import('node-fetch');
-    const response = await fetch.default('https://valorant-api.com/v1/sprays');
-    const data = await response.json();
-    const sprayMap = {};
-    data.data.forEach(sprayData => {
-      sprayMap[sprayData.uuid] = {
-        uuid: sprayData.uuid,
-        displayName: sprayData.displayName,
-        category: sprayData.category,
-        themeUuid: sprayData.themeUuid,
-        displayIcon: sprayData.displayIcon,
-        fullIcon: sprayData.fullIcon,
-        fullTransparentIcon: sprayData.fullTransparentIcon,
-        animationPng: sprayData.animationPng,
-        animationGif: sprayData.animationGif,
-        assetPath: sprayData.assetPath,
-        levels: sprayData.levels
-      };
-    });
-    return sprayMap;
-  }
+async function getSprays() {
+  const fetch = await import('node-fetch');
+  const response = await fetch.default('https://valorant-api.com/v1/sprays');
+  const data = await response.json();
+  const sprayMap = {};
+  data.data.forEach((sprayData) => {
+    sprayMap[sprayData.uuid] = {
+      uuid: sprayData.uuid,
+      displayName: sprayData.displayName,
+      category: sprayData.category,
+      themeUuid: sprayData.themeUuid,
+      displayIcon: sprayData.displayIcon,
+      fullIcon: sprayData.fullIcon,
+      fullTransparentIcon: sprayData.fullTransparentIcon,
+      animationPng: sprayData.animationPng,
+      animationGif: sprayData.animationGif,
+      assetPath: sprayData.assetPath,
+      levels: sprayData.levels,
+    };
+  });
+  return sprayMap;
+}
 
-  async function getMaps() {
-    const fetch = await import('node-fetch');
-    const response = await fetch.default('https://valorant-api.com/v1/maps');
-    const data = await response.json();
-    const maps = [];
-    data.data.forEach((mapData) => {
-      maps.push({
-        displayName: mapData.displayName,
-        splash: mapData.splash,
-      });
+async function getMaps() {
+  const fetch = await import('node-fetch');
+  const response = await fetch.default('https://valorant-api.com/v1/maps');
+  const data = await response.json();
+  const maps = [];
+  data.data.forEach((mapData) => {
+    maps.push({
+      displayName: mapData.displayName,
+      splash: mapData.splash,
     });
-    return maps;
-  }
-  
-  module.exports = { getAgents, getSprays, getMaps, getAgentsFiltered };
+  });
+  return maps;
+}
+
+async function getWeapons() {
+  const fetch = await import('node-fetch');
+  const response = await fetch.default('https://valorant-api.com/v1/weapons');
+  const data = await response.json();
+  const weapons = data.data
+    .filter((weaponData) => !weaponData.displayName.includes('Skin'))
+    .map((weaponData) => {
+      const weapon = {
+        displayName: weaponData.displayName,
+        category: weaponData.category.replace('EEquippableCategory::', ''),
+        image: weaponData.displayIcon,
+        weaponStats: weaponData.weaponStats,
+        cost: weaponData.shopData ? weaponData.shopData.cost : null, // add this line to extract the cost
+      };
+
+      if (weaponData.shopData && weaponData.shopData.cost) {
+        weapon.cost = weaponData.shopData.cost;
+      }
+
+      return weapon;
+    });
+
+  const categorizedWeapons = {};
+
+  // Categorize the weapons
+  weapons.forEach((weapon) => {
+    if (categorizedWeapons[weapon.category]) {
+      categorizedWeapons[weapon.category].push(weapon);
+    } else {
+      categorizedWeapons[weapon.category] = [weapon];
+    }
+  });
+
+  return categorizedWeapons;
+}
+
+module.exports = {
+  getAgents,
+  getSprays,
+  getMaps,
+  getAgentsFiltered,
+  getWeapons,
+};
