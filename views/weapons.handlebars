@@ -1,15 +1,27 @@
-<!-- weapons.handlebars -->
-{{#each weapons}}
-  <h2>{{@key}}</h2>
-  <ul>
-    {{#each this}}
-      <li>
-        <img src="{{image}}" alt="{{displayName}} icon">
-        {{displayName}}
-        {{#if cost}}
-          <span>Cost: {{cost}}</span>
-        {{/if}}
-      </li>
+<h1>Valorant Weapons</h1>
+<div class="weapon-wrapper">
+  <div class="weapon-cards-container">
+    {{#each weapons}}
+      <div class="weapon-div">
+        <h2 class="weapon-card-header">{{@key}}</h2>
+        <div class="weapon-card-body">
+          <ul class="weapon-list">
+            {{#each this}}
+              <li class="weapon-item">
+                <div class="weapon-card-image-container">
+                  <img class="weapon-card-image" src="{{image}}" alt="{{displayName}} icon">
+                </div>
+                <div class="weapon-card-details-container">
+                  <h3 class="weapon-card-details-header">{{displayName}}</h3>
+                  {{#if cost}}
+                    <p class="weapon-card-details">Cost: {{cost}}</p>
+                  {{/if}}
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
     {{/each}}
-  </ul>
-{{/each}}
+  </div>
+</div>

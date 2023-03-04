@@ -98,10 +98,23 @@ async function getWeapons() {
   return categorizedWeapons;
 }
 
+function sortByCost(weapons) {
+  return weapons.sort((a, b) => {
+    if (!a.cost) {
+      return 1;
+    } else if (!b.cost) {
+      return -1;
+    } else {
+      return a.cost - b.cost;
+    }
+  });
+}
+
 module.exports = {
   getAgents,
   getSprays,
   getMaps,
   getAgentsFiltered,
   getWeapons,
+  sortByCost,
 };
