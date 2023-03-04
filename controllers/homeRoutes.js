@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { Profile, User } = require('../models');
 const withAuth = require('../utils/auth');
-const { getAgents, getAgentsFiltered } = require('../utils/valorantHelpers');
-const paginate = require('paginate-info');
-const paginateArray = require('paginate-array');
+const { getAgentsFiltered, getWeapons } = require('../utils/valorantHelpers');
+const { paginate } = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
   try {
@@ -85,29 +84,22 @@ router.get('/aboutus', (req, res) => {
 
 router.get('/contact', (req, res) => {
   return res.render('contact', {});
-  }); 
+});
 
 router.get('/createprofile', (req, res) => {
-    return res.render('createprofile', {});
-    });   
+  return res.render('createprofile', {});
+});
 
 router.get('/agents', async (req, res) => {
   try {
     const agentMap = await getAgentsFiltered();
     const page = parseInt(req.query.page) || 1;
     const pageSize = 8; // number of agents per page
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const paginatedAgents = agentMap.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(agentMap.length / pageSize);
-    const paginationInfo = {
-      currentPage: page,
-      totalPages: totalPages,
-      hasPreviousPage: page > 1,
-      previousPage: page > 1 ? page - 1 : null,
-      hasNextPage: page < totalPages,
-      nextPage: page < totalPages ? page + 1 : null,
-    };
+    const { data: paginatedAgents, paginationInfo } = paginate(
+      agentMap,
+      page,
+      pageSize
+    );
     res.render('agents', {
       agents: paginatedAgents,
       paginationInfo: paginationInfo,
@@ -117,5 +109,16 @@ router.get('/agents', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/weapons', async (req, res) => {
+  try {
+    const weapons = await getWeapons();
+    res.render('weapons', { weapons });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving weapons data');
+  }
+});
+
 
 module.exports = router;

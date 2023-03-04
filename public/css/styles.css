@@ -115,17 +115,16 @@ svg {
 }
 
 .btn-search:hover {
-background-color: #2F80ED;
-color: #fff;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-transition: all 0.3s ease;
+  background-color: #2f80ed;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 #search:focus {
-outline: none;
-box-shadow: 0 0 5px #2F80ED;
+  outline: none;
+  box-shadow: 0 0 5px #2f80ed;
 }
-
 
 /********* END OF SEARCH BAR STUFF *********/
 /********* HEADER STUFF *********/
@@ -182,6 +181,7 @@ footer {
   padding: 20px 0;
   bottom: 0;
   width: 100%;
+  z-index: 999;
 }
 
 .footer-content {
@@ -285,7 +285,6 @@ footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
-
 /***** END OF CONTACT STUFF *****/
 
 /***** BIO STUFF *****/
@@ -296,7 +295,7 @@ footer {
   /* flex-direction: column; */
 }
 .card {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
   background-color: #fff;
   margin-right: 15px;
@@ -311,32 +310,32 @@ footer {
 
 /***** MY PROFILE STUFF *****/
 
-#update-profile{
+#update-profile {
   float: right;
 }
 
 /***** END OF PROFILE STUFF *****/
 
-#select-icon-btn{
+#select-icon-btn {
   margin: 10px;
 }
 
-#submit-update-btn{
+#submit-update-btn {
   margin: 10px;
 }
 
 /***** AGENTS PAGE *****/
 .agent-wrapper {
-  overflow: auto; /* hide any overflowing content */
-  max-height: calc(100vh - 20px);
+  overflow: auto;
+  max-height: calc(100vh - 140px);
 }
 
 .agent-cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr)); /* use percentage widths */
+  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
   grid-gap: 1em;
-  max-height: 100%; /* set a max-height to allow scrolling */
-  overflow-y: auto; /* make the container scrollable */
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .agent-card {
@@ -348,17 +347,53 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.agent-card:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.agent-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.agent-card:hover::before {
+  left: 0;
+}
+
+.agent-card-header,
+.agent-card-image,
+.agent-abilities-list {
+  position: relative;
+  z-index: 2;
 }
 
 .agent-card-header {
   font-size: 1.2em;
   margin-top: 0;
   margin-bottom: 0.5em;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 .agent-card-image {
   max-width: 100%;
   margin-bottom: 0.5em;
+  border: 1px solid #ddd;
 }
 
 .agent-card-body {
@@ -387,10 +422,11 @@ footer {
 .agent-pagination {
   margin-top: 1em;
   text-align: center;
-  margin-bottom: 20em;
+  margin-bottom: 10em;
 }
 
 .agent-pagination a {
+  background-color: #f5f5f5;
   color: #337ab7;
   text-decoration: none;
   border: 1px solid #ddd;
@@ -399,9 +435,119 @@ footer {
 }
 
 .agent-pagination a:hover {
-  background-color: #f5f5f5;
+  background-color: lightgray;
 }
+
+.agent-card-header {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  position: relative;
+  z-index: 1;
+  color: black;
+}
+
+.agent-card-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.agent-card:hover .agent-card-header::after {
+  opacity: 1;
+}
+
+.agent-card:hover .agent-card-header {
+  color: white;
+}
+
 /***** END OF AGENTS PAGE *****/
+
+/********* WEAPONS PAGE *********/
+
+.weapon-wrapper {
+  margin-bottom: 10rem;
+}
+
+.weapon-div {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+.weapon-card-header {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.weapon-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.weapon-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.weapon-item {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  min-width: 200px;
+  margin-right: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.weapon-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.weapon-card-image-container {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.weapon-card-image {
+  height: auto;
+  width: 200px;
+  object-fit: cover;
+  border: solid 1px #ddd;
+}
+
+.weapon-card-details-container {
+  margin-top: 0.5rem;
+}
+
+.weapon-card-details-header {
+  font-size: 1.25rem;
+  margin: 0.25rem 0;
+  color: #333;
+}
+
+.weapon-card-details {
+  margin: 0;
+  color: #666;
+}
+
+/********* END OF WEAPONS PAGE *********/
 
 /***** SCROLL BAR STUFF *****/
 ::-webkit-scrollbar {
