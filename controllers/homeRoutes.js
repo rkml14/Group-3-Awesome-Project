@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Profile, User } = require('../models');
 const withAuth = require('../utils/auth');
-const { getAgentsFiltered, getWeapons } = require('../utils/valorantHelpers');
+const { getAgentsFiltered, getWeapons, getMaps, getSpecifiedMap } = require('../utils/valorantHelpers');
 const { paginate } = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
@@ -120,5 +120,14 @@ router.get('/weapons', async (req, res) => {
   }
 });
 
+router.get('/maps', async (req, res) => {
+  try {
+    const maps = await getMaps();
+    res.render('maps', { maps });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving maps data');
+  }
+});
 
 module.exports = router;
