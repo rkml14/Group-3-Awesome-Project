@@ -6,19 +6,19 @@ const { paginate } = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
   try {
-    const profileData = await Profile.findAll({
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] },
       include: [
         {
-          model: User,
-          attributes: { exclude: ['password'] },
+          model: Profile,
         },
       ],
     });
 
-    const profile = profileData.map((profile) => profile.get({ plain: true }));
-    console.log(profile);
+    const user = userData.map((user) => user.get({ plain: true }));
+    console.log(user);
     res.render('homepage', {
-      profile,
+      user,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id,
     });
@@ -30,20 +30,25 @@ router.get('/', async (req, res) => {
 router.get('/myprofile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findOne({
+    const profileData = await Profile.findOne({
       where: {
         id: req.session.user_id,
       },
       attributes: { exclude: ['password'] },
-      include: { model: Profile },
+      include:[{ model: User }],
     });
-    console.log(userData);
-    const users = userData.get({ plain: true });
+    if(profileData == null){
+      res.redirect('/createprofile')
+    }
+    else{
+    const profile = profileData.get({ plain: true });
     res.render('myprofile', {
-      users,
+      profile,
       logged_in: req.session.logged_in,
-    });
+    })
+  };
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
