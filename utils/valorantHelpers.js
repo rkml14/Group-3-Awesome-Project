@@ -57,7 +57,24 @@ async function getMaps() {
     maps.push({
       displayName: mapData.displayName,
       splash: mapData.splash,
+      displayIcon: mapData.displayIcon,
+      coordinates: mapData.coordinates,
     });
+  });
+  return maps;
+}
+
+async function getSpecifiedMap() {
+  const fetch = await import('node-fetch');
+  const response = await fetch.default('https://valorant-api.com/v1/maps');
+  const data = await response.json();
+  const maps = data.data.filter(mapData => mapData.uuid !== 'ee613ee9-28b7-4beb-9666-08db13bb2244').map((mapData) => {
+    return {
+      displayName: mapData.displayName,
+      splash: mapData.splash,
+      displayIcon: mapData.displayIcon,
+      coordinates: mapData.coordinates,
+    };
   });
   return maps;
 }
@@ -117,4 +134,5 @@ module.exports = {
   getAgentsFiltered,
   getWeapons,
   sortByCost,
+  getSpecifiedMap,
 };

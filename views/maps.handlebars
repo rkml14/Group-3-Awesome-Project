@@ -1,0 +1,27 @@
+<div class="map-container">
+  <div class="map-slideshow-container">
+    <div class="map-slideshow">
+      {{#each maps}}
+        <div class="map-slide">
+          <div class="map-card">
+            <div class="map-card-header">
+              <h3>{{displayName}}</h3>
+              <p>{{coordinates}}</p>
+            </div>
+            <img src="{{splash}}" alt="{{displayName}}" class="map-slide-image">
+          </div>
+          <div class="map-slide-info">
+            <button class="view-layout-btn">View Map Layout</button>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="map-slideshow-buttons">
+      <button class="map-prev-btn">&lt;</button>
+      <button class="map-next-btn">&gt;</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/mapsSlideShow.js"></script>
