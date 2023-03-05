@@ -1,22 +1,44 @@
-<div class="col-md-6">
-    <h2>Update Profile</h2>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Create Profile</h2>
 
-    <form class="form signup-form">
+    <form class="form create-profile-form">
       <div class="form-group">
-        <label for="profile-name">Profile Username:</label>
-        <input class="form-input" type="text" id="profile-name" />
+        <label for="profile-username">Profile Username:</label>
+        <input class="form-input" type="text" id="profile-username" />
       </div>
       <div class="form-group">
         <label for="profile-bio">Profile Bio:</label>
         <input class="form-input" type="text" id="profile-bio" />
       </div>
       <div>
-        <button id="select-icon-btn" class="btn btn-sm btn-danger">Select Profile Icon</button>
+        <button id="select-profile-icon" class="btn btn-sm btn-danger">Select Profile Icon</button>
       </div>
-        <button id="submit-update-btn" class="btn btn-primary" type="submit">Update</button>
+      <div class="form-group">
+        <button id="create-profile-btn" class="btn btn-primary" type="submit" value="{{user_id}}">Create Profile</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h2>Update Profile</h2>
+
+    <form class="form update-profile-form">
+      <div class="form-group">
+        <label for="new-username">New Username:</label>
+        <input class="form-input" type="text" id="new-username" />
+      </div>
+      <div class="form-group">
+        <label for="new-bio">New Bio:</label>
+        <input class="form-input" type="text" id="new-bio" />
+      </div>
+      <div>
+        <button id="select-profile-icon" class="btn btn-sm btn-danger">Select Profile Icon</button>
+      </div>
+      <div class="form-group">
+        <button id="update-profile-btn" class="btn btn-primary" type="submit" value="{{user_id}}">Update Profile</button>
       </div>
     </form>
   </div>
 </div>
 
-<script src=""></script>
+<script src="/js/profile.js"></script>
