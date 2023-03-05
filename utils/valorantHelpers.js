@@ -91,7 +91,7 @@ async function getWeapons() {
         category: weaponData.category.replace('EEquippableCategory::', ''),
         image: weaponData.displayIcon,
         weaponStats: weaponData.weaponStats,
-        cost: weaponData.shopData ? weaponData.shopData.cost : null, // add this line to extract the cost
+        cost: weaponData.shopData ? weaponData.shopData.cost : null, 
       };
 
       if (weaponData.shopData && weaponData.shopData.cost) {
