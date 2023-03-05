@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
     });
 
     const user = userData.map((user) => user.get({ plain: true }));
-    console.log(user);
     res.render('homepage', {
       user,
       logged_in: req.session.logged_in,
@@ -34,8 +33,9 @@ router.get('/myprofile', withAuth, async (req, res) => {
       where: {
         id: req.session.user_id,
       },
-      attributes: { exclude: ['password'] },
-      include:[{ model: User }],
+      include:[{ model: User,
+      attributes: {include:['username']},
+       }],
     });
     if(profileData == null){
       res.redirect('/createprofile')
@@ -91,9 +91,29 @@ router.get('/contact', (req, res) => {
   return res.render('contact', {});
 });
 
-router.get('/createprofile', (req, res) => {
-  return res.render('createprofile', {});
+router.get('/createprofile', async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Profile,
+        },
+      ],
+    });
+
+    const user = userData.map((user) => user.get({ plain: true }));
+
+    res.render('createprofile', {
+      user,
+      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
+
 
 router.get('/agents', async (req, res) => {
   try {
