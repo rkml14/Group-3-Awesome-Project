@@ -15,11 +15,6 @@ Profile.init(
           user_username: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
-            references: {
-              model: 'user',
-              key: 'username'
-            }
           }, // username
 
           // profile_pic: {
