@@ -16,11 +16,15 @@ Project Friendly Fire is a webpage that utilizes a custom RESTful API along with
 
 If you wish to install this webpage to your own local machine, simply clone this repository to your local machine and run npm install in your terminal.
 
+A screenshot of our homepage:
+
+![Friendly-Fire-Homepage](./public/assets/images/homepage-screenshot.png)
+
 ## Usage
 
 To use this webpage follow the link provided!
 
-[Webpage Link]()
+[Webpage Link](https://project-friendly-fire.herokuapp.com/)
 
 ## Credits
 
@@ -34,3 +38,5 @@ Fellow collaborators on this project:
 Refer to the LICENSE in the repo.
 
 ## Features
+
+Creation of a profile to add your Valorant ID and create a bio, as well as view all the Weapons, Agents & Maps in Valorant!
