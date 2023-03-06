@@ -15,7 +15,8 @@
         <button id="select-profile-icon" class="btn btn-sm btn-danger">Select Profile Icon</button>
       </div>
       <div class="form-group">
-        <button id="create-profile-btn" class="btn btn-primary" type="submit" value="{{user_id}}">Create Profile</button>
+        <button id="create-profile-btn" class="btn btn-primary" type="submit" value="{{user_id}}">Create
+          Profile</button>
       </div>
     </form>
   </div>
@@ -35,10 +36,43 @@
         <button id="select-profile-icon" class="btn btn-sm btn-danger">Select Profile Icon</button>
       </div>
       <div class="form-group">
-        <button id="update-profile-btn" class="btn btn-primary" type="submit" value="{{user_id}}">Update Profile</button>
+        <button id="update-profile-btn" class="btn btn-primary" type="submit" value="{{user_id}}">Update
+          Profile</button>
       </div>
     </form>
   </div>
 </div>
+
+<div class="modal" id="avatar" tabindex="-1" hidden>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Choose an Agent</h5>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          {{#each agentMap}}
+          <div class="col">
+            <div class="agent-selection agent-selection-card" data-icon="{{this.displayIcon}}"
+              data-display-name="{{this.displayName}}">
+              <img src="{{this.displayIcon}}" class="card-img-top" alt="{{this.displayName}}">
+              <div class="card-body">
+                <h5 class="card-title">{{this.displayName}}</h5>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="btn-submit" class="btn btn-primary" value="{{user_Id}}">Save Agent</button>
+        <button type="button" class="btn btn-secondary" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="/js/modal.js"></script>
 
 <script src="/js/profile.js"></script>
