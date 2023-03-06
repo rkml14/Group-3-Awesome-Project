@@ -1,0 +1,35 @@
+{{!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profilepix">
+  Choose an Agent
+</button> --}}
+
+<div class="modal" id="avatar" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Choose an Agent</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-cols-2 g-4">
+          {{#each agents}}
+          <div class="col">
+            <div class="agent-selection agent-selection-card" data-icon="{{this.displayIcon}}"
+              data-display-name="{{this.displayName}}">
+              <img src="{{this.displayIcon}}" class="card-img-top" alt="{{this.displayName}}">
+              <div class="card-body">
+                <h5 class="card-title">{{@key}}</h5>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="btn-submit" class="btn btn-primary" value="{{user_Id}}">Save Agent</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/modal.js"></script>
