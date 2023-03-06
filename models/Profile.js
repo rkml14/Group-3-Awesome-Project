@@ -17,10 +17,15 @@ Profile.init(
             allowNull: false,
           }, // username
 
-          // profile_pic: {
+          // avatar_name: {
           //   type: DataTypes.STRING,
           //   allowNull: true,
-          // }, // profile_pic
+          // }, // avatar_name
+
+          // avatar_image: {
+          //   type: DataTypes.STRING,
+          //   allowNull: true,
+          // }, // avatar_image
 
           bio: {
             type: DataTypes.STRING,

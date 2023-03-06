@@ -28,7 +28,7 @@ const createProfileFormHandler = async (event) => {
     const user_username = document.querySelector('#new-username').value.trim();
     const bio = document.querySelector('#new-bio').value.trim();
   console.log(id, user_username, bio);
-    if (id, user_username && bio) {
+    if (id && user_username && bio) {
       const response = await fetch(`/api/profiles/${id}`, {
         method: 'PUT',
         body: JSON.stringify({id, user_username, bio }),
