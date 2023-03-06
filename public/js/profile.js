@@ -8,7 +8,7 @@ const createProfileFormHandler = async (event) => {
     console.log(user_username);
     console.log(bio);
     if (id && user_username && bio) {
-      const response = await fetch('/api/profiles', {
+      const response = await fetch('/api/profiles/', {
         method: 'POST',
         body: JSON.stringify({ id, user_username, bio }),
         headers: { 'Content-Type': 'application/json' },
